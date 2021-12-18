@@ -1,5 +1,5 @@
 import UserModel from './../model/user.model';
-// import { hashSync, compareSync } from 'bcrypt';
+import { hashSync, compareSync } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { createTransport } from 'nodemailer';
 
@@ -40,6 +40,15 @@ const getUser = async (req, res) => {
   return res.json({ status: true, item: user });
 };
 
+const getUsers =async (req, res) => {
+  try {
+    const data = await UserModel.find({})
+    return res.json({ status: true, items: data });
+  } catch (ex) {
+    return res.json({ status: false, errors: ex.message });
+  }
+};
+
 const login = async (req, res) => {
   try {
     const body = req.body;
@@ -69,4 +78,4 @@ const login = async (req, res) => {
 
 // const getUser = async (req, res) => {};
 
-export { register, login, getUser };
+export { register, login, getUser,getUsers };
