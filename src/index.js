@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 import UserRouter from './router/user.router';
 import PuertoRouter from './router/puerto.router';
@@ -14,6 +15,7 @@ const app = express();
 const main = async () => {
   await mongoose.connect(process.env.URL_DB);
   app.use(express.json());
+  app.use(cors());
   app.get('/', (req, res) => {
     res.send('Hello World!');
   });
