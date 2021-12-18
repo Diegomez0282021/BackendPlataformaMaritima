@@ -2,8 +2,6 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 
-import CategoryRouter from './router/category.router';
-import ProductRouter from './router/product.router';
 import UserRouter from './router/user.router';
 import PuertoRouter from './router/puerto.router';
 import OrderRouter from './router/order.router';
