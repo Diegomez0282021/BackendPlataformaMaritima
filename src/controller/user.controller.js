@@ -9,7 +9,7 @@ const register = async (req, res) => {
     body.password = hashSync(body.password, 10);
     const user = new UserModel(body);
     await user.save();
-    await sendEmail(user);
+    //await sendEmail(user);
     return res.json({ status: true });
   } catch (e) {
     return res.json({ status: false, errors: e.message });
@@ -49,7 +49,7 @@ const login = async (req, res) => {
         const token = sign(
           {
             exp: Math.floor(Date.now() / 1000) + 60 * 60,
-            data: { id: verify._id, name: verify.name, email: verify.email },
+            data: { id: verify._id, name: verify.name, email: verify.email,role:verify.role },
           },
           process.env.JWT_SECRET
         );

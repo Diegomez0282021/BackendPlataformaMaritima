@@ -1,11 +1,12 @@
-import ProductModel from './../model/product.model';
-import LotModel from './../model/lot.model';
+import OrderModel from './../model/order.model';
 
 const index = async (req, res) => {
   try {
-    const data = await ProductModel.find({})
-      .populate('category_id')
-      .populate('features.lot_id');
+    const data = await OrderModel.find({})
+      .populate('ports.idPortDeparture')
+      .populate('ports.idPortDestination')
+      .populate("idUser")
+      .populate("idValueConfig");
     return res.json({ status: true, items: data });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });
@@ -15,7 +16,7 @@ const index = async (req, res) => {
 const save = async (req, res) => {
   try {
     const data = req.body;
-    const model = new ProductModel(data);
+    const model = new OrderModel(data);
     await model.save();
     return res.json({ status: true });
   } catch (ex) {
@@ -26,9 +27,11 @@ const save = async (req, res) => {
 const edit = async (req, res) => {
   try {
     const params = req.params;
-    const category = await ProductModel.findById(params.productId)
-      .populate('category_id')
-      .populate('features.lot_id');
+    const category = await OrderModel.findById(params.orderId)
+      .populate('ports.idPortDeparture')
+      .populate('ports.idPortDestination')
+      .populate("idUser")
+      .populate("idValueConfig");
     return res.json({ status: true, item: category });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });
@@ -39,7 +42,7 @@ const update = async (req, res) => {
   try {
     const params = req.params;
     const body = req.body;
-    await ProductModel.findByIdAndUpdate(params.productId, body);
+    await OrderModel.findByIdAndUpdate(params.orderId, body);
     return res.json({ status: true });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });
@@ -49,7 +52,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     const params = req.params;
-    await ProductModel.findByIdAndDelete(params.productId);
+    await OrderModel.findByIdAndDelete(params.orderId);
     return res.json({ status: true });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });

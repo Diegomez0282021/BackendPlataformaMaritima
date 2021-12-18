@@ -5,7 +5,7 @@ const userSchema = new Schema({
   email: { type: String },
   password: { type: String },
   role: { type: String, default: 'CLIENT' },
-  state: { type: Boolean, default: false },
+  state: { type: Boolean, default: true },
 });
 
 export default model('User', userSchema);
