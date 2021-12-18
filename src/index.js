@@ -18,8 +18,6 @@ const main = async () => {
     res.send('Hello World!');
   });
 
-  app.use('/api', CategoryRouter);
-  app.use('/api', ProductRouter);
   app.use('/api', UserRouter);
   app.use('/api', PuertoRouter);
   app.use('/api',OrderRouter);
