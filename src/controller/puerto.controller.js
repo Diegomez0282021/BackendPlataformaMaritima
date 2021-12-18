@@ -9,6 +9,16 @@ const found = async (req, res) => {
   }
 };
 
+// const edit = async (req, res) => {
+//   try {
+//     const params = req.params;
+//     const category = await PuertoModel.findById(params.puertoId)      
+//     return res.json({ status: true, item: category });
+//   } catch (ex) {
+//     return res.json({ status: false, errors: ex.message });
+//   }
+// };
+
 const save = async (req, res) => {
   try {
     const data = req.body;
