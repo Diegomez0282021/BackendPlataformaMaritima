@@ -49,7 +49,7 @@ const login = async (req, res) => {
         const token = sign(
           {
             exp: Math.floor(Date.now() / 1000) + 60 * 60,
-            data: { id: verify._id, name: verify.name, email: verify.email },
+            data: { id: verify._id, name: verify.name, email: verify.email,role:verify.role },
           },
           process.env.JWT_SECRET
         );
