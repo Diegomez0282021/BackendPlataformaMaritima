@@ -9,7 +9,7 @@ const register = async (req, res) => {
     body.password = hashSync(body.password, 10);
     const user = new UserModel(body);
     await user.save();
-    await sendEmail(user);
+    //await sendEmail(user);
     return res.json({ status: true });
   } catch (e) {
     return res.json({ status: false, errors: e.message });
