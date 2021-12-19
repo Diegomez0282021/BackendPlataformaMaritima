@@ -5,6 +5,7 @@ import {
   edit,
   update,
   remove,
+  findByUser,
 } from './../controller/order.controller';
 
 const app = Router();
@@ -12,7 +13,11 @@ const app = Router();
 app.get('/order', index);
 app.post('/order', save);
 app.get('/order/:orderID', edit);
-app.put('/order/:orderID', update);
-app.delete('/order/:orderID', remove);
+
+app.post('/order/update',update)
+app.delete('/order/remove',remove)
+
+app.get('/orderByUser/:userID', findByUser);
+
 
 export default app;
