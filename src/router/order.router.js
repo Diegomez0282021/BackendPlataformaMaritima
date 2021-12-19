@@ -5,7 +5,7 @@ import {
   edit,
   update,
   remove,
-  findByUser
+  findByUser,
 } from './../controller/order.controller';
 
 const app = Router();
