@@ -1,5 +1,4 @@
 import seaPort from './../model/seaPort.model';
-import LotModel from './../model/lot.model';
 
 // const index = async (req, res) => {
 //   try {
@@ -26,7 +25,7 @@ const save = async (req, res) => {
 const edit = async (req, res) => {
   try {
     const params = req.params;
-    const category = await seaPort.findById(params.seaPort_id)
+    const category = await seaPort.findById(params.seaPort_id);
     //   .populate('category_id')
     //   .populate('features.lot_id');
     return res.json({ status: true, item: category });
@@ -56,4 +55,4 @@ const remove = async (req, res) => {
   }
 };
 
-export {  save, edit, update, remove };
+export { save, edit, update, remove };
