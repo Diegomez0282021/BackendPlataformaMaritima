@@ -1,5 +1,5 @@
 import UserModel from './../model/user.model';
-import { hashSync, compareSync } from 'bcrypt';
+// import { hashSync, compareSync } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { createTransport } from 'nodemailer';
 
