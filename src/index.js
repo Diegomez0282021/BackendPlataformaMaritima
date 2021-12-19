@@ -8,7 +8,6 @@ import PuertoRouter from './router/puerto.router';
 import OrderRouter from './router/order.router';
 import ConfigValuesRouter from './router/configValue.router';
 
-
 dotenv.config();
 const app = express();
 
@@ -22,8 +21,8 @@ const main = async () => {
 
   app.use('/api', UserRouter);
   app.use('/api', PuertoRouter);
-  app.use('/api',OrderRouter);
-  app.use('/api',ConfigValuesRouter)
+  app.use('/api', OrderRouter);
+  app.use('/api', ConfigValuesRouter);
 
   app.listen(process.env.PORT, () => {
     console.log(`app listening at port ${process.env.PORT}`);
