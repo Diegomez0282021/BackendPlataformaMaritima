@@ -40,9 +40,9 @@ const getUser = async (req, res) => {
   return res.json({ status: true, item: user });
 };
 
-const getUsers =async (req, res) => {
+const getUsers = async (req, res) => {
   try {
-    const data = await UserModel.find({})
+    const data = await UserModel.find({});
     return res.json({ status: true, items: data });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });
@@ -58,7 +58,12 @@ const login = async (req, res) => {
         const token = sign(
           {
             exp: Math.floor(Date.now() / 1000) + 60 * 60,
-            data: { id: verify._id, name: verify.name, email: verify.email,role:verify.role },
+            data: {
+              id: verify._id,
+              name: verify.name,
+              email: verify.email,
+              role: verify.role,
+            },
           },
           process.env.JWT_SECRET
         );
@@ -78,4 +83,4 @@ const login = async (req, res) => {
 
 // const getUser = async (req, res) => {};
 
-export { register, login, getUser,getUsers };
+export { register, login, getUser, getUsers };

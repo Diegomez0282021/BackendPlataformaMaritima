@@ -1,4 +1,4 @@
-import { Schema, model,mongoose } from 'mongoose';
+import { Schema, model, mongoose } from 'mongoose';
 const dat = new Date();
 
 const orderSchema = new Schema({
@@ -9,7 +9,9 @@ const orderSchema = new Schema({
     idPortDestination: { type: Schema.Types.ObjectId, ref: 'SeaPort' },
   },
 
+
   idUser: { type: Schema.Types.ObjectId, ref: 'User' },
+
   stateOrder: {
     state: { type: String, default: 'Pendiente' },
     date: { type: Date, default: dat },

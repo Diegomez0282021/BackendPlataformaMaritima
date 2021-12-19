@@ -71,17 +71,17 @@ const update = async (req, res) => {
   }
 };
 
-const findByUser=async (req, res) => {
-  try{
+const findByUser = async (req, res) => {
+  try {
     const params = req.params;
-  const data = await OrderModel.find({ "idUser": params.userID })
+    const data = await OrderModel.find({ idUser: params.userID })
       .populate('ports.idPortDeparture')
       .populate('ports.idPortDestination')
-      .populate("idUser")
-      .populate("idValueConfig");
+      .populate('idUser')
+      .populate('idValueConfig');
     return res.json({ status: true, items: data });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });
   }
-}
-export { index, save, edit, update, remove, findByUser};
+};
+export { index, save, edit, update, remove, findByUser };
