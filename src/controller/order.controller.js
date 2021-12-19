@@ -6,7 +6,7 @@ const index = async (req, res) => {
       .populate('ports.idPortDeparture')
       .populate('ports.idPortDestination')
       .populate('idUser')
-      .populate('idValueConfig');
+      .populate('invoice.idValueConfig');
     return res.json({ status: true, items: data });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });
@@ -38,21 +38,33 @@ const edit = async (req, res) => {
   }
 };
 
-const update = async (req, res) => {
+// const update = async (req, res) => {
+//   try {
+//     const params = req.params;
+//     const body = req.body;
+//     await OrderModel.findByIdAndUpdate(params.orderId, body);
+//     return res.json({ status: true,params:params.orderID,body:body });
+//   } catch (ex) {
+//     return res.json({ status: false, errors: ex.message });
+//   }
+// };
+
+const remove = async (req, res) => {
   try {
-    const params = req.params;
-    const body = req.body;
-    await OrderModel.findByIdAndUpdate(params.orderId, body);
-    return res.json({ status: true });
+    let id=req.body.id;
+    console.log(req.body)
+    await OrderModel.findOneAndDelete({_id:id});
+    return res.json({ status: true,body:req.body });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });
   }
 };
 
-const remove = async (req, res) => {
+const update = async (req, res) => {
   try {
-    const params = req.params;
-    await OrderModel.findByIdAndDelete(params.orderId);
+ 
+    let id=req.body;
+    await OrderModel.updateOne({_id:id}, { $set: { state: true } });
     return res.json({ status: true });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });

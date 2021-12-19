@@ -9,11 +9,8 @@ const orderSchema = new Schema({
     idPortDestination: { type: Schema.Types.ObjectId, ref: 'SeaPort' },
   },
 
-  idUser: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    default: '61bc192fa73ba4f02a825470',
-  },
+
+  idUser: { type: Schema.Types.ObjectId, ref: 'User' },
 
   stateOrder: {
     state: { type: String, default: 'Pendiente' },
