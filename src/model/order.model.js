@@ -26,6 +26,7 @@ const orderSchema = new Schema({
     amount: { type: Number, default: 1 },
     Date: { type: Date, default: dat },
     idValueConfig: { type: Schema.Types.ObjectId, ref: 'ConfigValues' },
+    value:{type: Number}
   },
   Date: { type: Date, default: dat },
   state: { type: Boolean, default: true },
