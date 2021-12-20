@@ -4,6 +4,19 @@ const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate
 console.log(date)
 const index = async (req, res) => {
   try {
+    const data = await OrderModel.find({})
+      .populate('ports.idPortDeparture')
+      .populate('ports.idPortDestination')
+      .populate('idUser')
+      .populate('invoice.idValueConfig');
+    return res.json({ status: true, items: data });
+  } catch (ex) {
+    return res.json({ status: false, errors: ex.message });
+  }
+};
+
+const indexDate = async (req, res) => {
+  try {
     const data = await OrderModel.find({Date: date})
       .populate('ports.idPortDeparture')
       .populate('ports.idPortDestination')
@@ -86,4 +99,4 @@ const findByUser = async (req, res) => {
     return res.json({ status: false, errors: ex.message });
   }
 };
-export { index, save, edit, update, remove, findByUser };
+export { index,indexDate, save, edit, update, remove, findByUser };

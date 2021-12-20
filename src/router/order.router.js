@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   index,
+  indexDate,
   save,
   edit,
   update,
@@ -11,6 +12,7 @@ import {
 const app = Router();
 
 app.get('/order', index);
+app.get('/orderDate', indexDate);
 app.post('/order', save);
 app.get('/order/:orderID', edit);
 
