@@ -80,6 +80,16 @@ const updateStateOrder = async (req, res) => {
   }
 };
 
+const updateOrderState = async (req, res) => {
+  try {
+    let id=req.body.id;
+    await OrderModel.updateOne({_id:id}, { $set: { "stateOrder.state":req.body.state}  });
+    return res.json({ status: true });
+  } catch (ex) {
+    return res.json({ status: false, errors: ex.message });
+  }
+};
+
 const findByUser = async (req, res) => {
   try {
     const params = req.params;
@@ -93,4 +103,4 @@ const findByUser = async (req, res) => {
     return res.json({ status: false, errors: ex.message });
   }
 };
-export { index, save, edit, update, remove, findByUser,updateStateOrder };
+export { index, save, edit, update, remove, findByUser,updateStateOrder,updateOrderState };
