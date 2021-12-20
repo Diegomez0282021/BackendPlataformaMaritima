@@ -6,7 +6,8 @@ import {
   update,
   remove,
   findByUser,
-  updateStateOrder
+  updateStateOrder,
+  updateOrderState
 } from './../controller/order.controller';
 
 const app = Router();
@@ -17,6 +18,7 @@ app.get('/order/:orderID', edit);
 
 app.post('/order/update',update)
 app.post('/order/updateState',updateStateOrder)
+app.post('/order/updateOrders',updateOrderState)
 
 app.delete('/order/remove',remove)
 
