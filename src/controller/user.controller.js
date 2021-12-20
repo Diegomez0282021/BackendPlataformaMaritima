@@ -1,5 +1,5 @@
 import UserModel from './../model/user.model';
-import { hashSync, compareSync } from 'bcrypt';
+// import { hashSync, compareSync } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { createTransport } from 'nodemailer';
 
@@ -48,6 +48,9 @@ const getUsers = async (req, res) => {
     return res.json({ status: false, errors: ex.message });
   }
 };
+
+
+
 
 const login = async (req, res) => {
   try {

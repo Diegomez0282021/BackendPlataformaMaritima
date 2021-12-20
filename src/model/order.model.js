@@ -1,6 +1,7 @@
 import { Schema, model, mongoose } from 'mongoose';
 const dat = new Date();
-
+const current=new Date();
+  const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
 const orderSchema = new Schema({
   nombre: { type: String },
   descripcion: { type: String },
@@ -28,7 +29,7 @@ const orderSchema = new Schema({
     idValueConfig: { type: Schema.Types.ObjectId, ref: 'ConfigValues' },
     value:{type: Number}
   },
-  Date: { type: Date, default: dat },
+  Date: { type: String, default: date },
   state: { type: Boolean, default: true },
 });
 
