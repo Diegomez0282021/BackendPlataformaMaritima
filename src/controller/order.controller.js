@@ -1,8 +1,10 @@
 import OrderModel from './../model/order.model';
-
+const current=new Date();
+const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
+console.log(date)
 const index = async (req, res) => {
   try {
-    const data = await OrderModel.find({})
+    const data = await OrderModel.find({Date: date})
       .populate('ports.idPortDeparture')
       .populate('ports.idPortDestination')
       .populate('idUser')
@@ -23,6 +25,7 @@ const save = async (req, res) => {
     return res.json({ status: false, errors: ex.message });
   }
 };
+
 
 const edit = async (req, res) => {
   try {
@@ -78,7 +81,6 @@ const findByUser = async (req, res) => {
       .populate('ports.idPortDeparture')
       .populate('ports.idPortDestination')
       .populate('idUser')
-      .populate('idValueConfig');
     return res.json({ status: true, items: data });
   } catch (ex) {
     return res.json({ status: false, errors: ex.message });
